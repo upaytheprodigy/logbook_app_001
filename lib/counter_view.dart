@@ -31,6 +31,17 @@ class _CounterViewState extends State<CounterView> {
               label: '${_controller.step}',
               onChanged: (value) => setState(() => _controller.step = value.toInt()),
             ),
+            const SizedBox(height: 30),
+            const Text("Riwayat Aktivitas Terakhir:", style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 170,
+              child: ListView(
+                shrinkWrap: true,
+                children: _controller.history.isEmpty
+                  ? [const Text("Belum ada aktivitas.")]
+                  : _controller.history.map((e) => Text(e, style: const TextStyle(fontSize: 14))).toList(),
+              ),
+            ),
           ],
         ),
       ),
@@ -57,5 +68,3 @@ class _CounterViewState extends State<CounterView> {
     );
   }
 }
-
-
