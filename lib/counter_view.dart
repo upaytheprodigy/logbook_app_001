@@ -39,7 +39,15 @@ class _CounterViewState extends State<CounterView> {
                 shrinkWrap: true,
                 children: _controller.history.isEmpty
                   ? [const Text("Belum ada aktivitas.")]
-                  : _controller.history.map((e) => Text(e, style: const TextStyle(fontSize: 14))).toList(),
+                  : _controller.history.map((e) {
+                      Color? color;
+                      if (e.toLowerCase().contains('menambah')) {
+                        color = Colors.green;
+                      } else if (e.toLowerCase().contains('mengurangi')) {
+                        color = Colors.red;
+                      }
+                      return Text(e, style: TextStyle(fontSize: 14, color: color));
+                    }).toList(),
               ),
             ),
           ],
@@ -50,7 +58,31 @@ class _CounterViewState extends State<CounterView> {
         children: [
           const SizedBox(width: 32),
           FloatingActionButton(
-            onPressed: () => setState(() => _controller.reset()),
+            onPressed: () async {
+              final confirm = await showDialog<bool>(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: const Text('Konfirmasi Reset'),
+                  content: const Text('Apakah Anda yakin ingin mereset nilai?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(ctx).pop(false),
+                      child: const Text('Batal'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(ctx).pop(true),
+                      child: const Text('Reset'),
+                    ),
+                  ],
+                ),
+              );
+              if (confirm == true) {
+                setState(() => _controller.reset());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Counter berhasil di-reset!')),
+                );
+              }
+            },
             child: const Text("Reset"),
           ),
           const SizedBox(width: 135),
