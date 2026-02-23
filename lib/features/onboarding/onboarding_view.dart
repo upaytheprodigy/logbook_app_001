@@ -131,8 +131,8 @@ class _OnboardingViewState extends State<OnboardingView> {
               },
               child: Text(
                 _currentPage == _pages.length - 1
-                    ? "Get Started"
-                    : "Next",
+                    ? "Mulai"
+                    : "Lanjut",
               ),
             ),
           ),

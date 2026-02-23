@@ -2,8 +2,8 @@
 class LoginController {
   // Database sederhana (Hardcoded) untuk multiple users
   final Map<String, String> _users = {
-    "admin": "123",
-    "budi": "456",
+    "Admin": "123",
+    "Revaldi": "456",
   };
 
 

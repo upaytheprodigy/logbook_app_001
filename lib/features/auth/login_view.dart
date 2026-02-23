@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // Import Controller milik sendiri (masih satu folder)
 import 'package:logbook_app_001/features/auth/login_controller.dart';
 // Import View dari fitur lain (Logbook) untuk navigasi
-import 'package:logbook_app_001/features/logbook/counter_view.dart';
+import 'package:logbook_app_001/features/logbook/log_view.dart';
 // Import untuk timer
 import 'dart:async';
 
@@ -20,6 +20,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _passController = TextEditingController();
   int _failedAttempts = 0;
   bool _isLocked = false;
+  bool _isPasswordVisible = false;
   int _remainingTime = 0;
   Timer? _timer;
 
@@ -44,11 +45,11 @@ class _LoginViewState extends State<LoginView> {
 
       _failedAttempts = 0; // Reset hitungan gagal saat login berhasil
 
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          // Di sini kita kirimkan variabel 'user' ke parameter 'username' di CounterView
-          builder: (context) => CounterView(username: user),
+          // Di sini kita kirimkan variabel 'user' ke parameter 'username' di LogView
+          builder: (context) => LogView(username: user),
         ),
       );
       
@@ -101,10 +102,21 @@ class _LoginViewState extends State<LoginView> {
             ),
             TextField(
               controller: _passController,
-              obscureText: true, // Menyembunyikan teks password
-              decoration: const InputDecoration(
+              obscureText: !_isPasswordVisible,
+              decoration: InputDecoration(
                 labelText: "Password",
-                suffixIcon: Icon(Icons.remove_red_eye),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordVisible 
+                      ? Icons.visibility_off 
+                      : Icons.visibility
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                ),
               ),
             ),
             const SizedBox(height: 20),
