@@ -16,17 +16,17 @@ class _OnboardingViewState extends State<OnboardingView> {
   final List<Map<String, String>> _pages = [
     {
       "title": "Selamat Datang",
-      "desc": "Aplikasi Counter modern dengan sistem logbook pribadi.",
+      "desc": "Aplikasi logbook pribadi untuk mencatat aktivitas harian kamu.",
       "image": "lib/features/assets/img1.jpg"
     },
     {
       "title": "Multi User Support",
-      "desc": "Data tersimpan berdasarkan username masing-masing.",
+      "desc": "Setiap pengguna memiliki logbook pribadi yang terpisah.",
       "image": "lib/features/assets/img2.jpg"
     },
     {
       "title": "Kelola Aktivitas",
-      "desc": "Tambah, kurangi, dan reset dengan riwayat tersimpan.",
+      "desc": "Catat dan kelola aktivitas harian kamu dengan mudah.",
       "image": "lib/features/assets/img3.jpg"
     },
   ];
