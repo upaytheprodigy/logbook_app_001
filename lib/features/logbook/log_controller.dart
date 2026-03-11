@@ -23,7 +23,7 @@ class LogController {
   void addLog(String title, String desc, String category) {
     final newLog = LogModel(
       title: title,
-      date: DateTime.now().toString(),
+      date: DateTime.now(),
       description: desc,
       category: category,
     );
@@ -37,7 +37,7 @@ class LogController {
     final currentLogs = List<LogModel>.from(logsNotifier.value);
     currentLogs[index] = LogModel(
       title: title,
-      date: DateTime.now().toString(),
+      date: DateTime.now(),
       description: desc,
       category: category,
     );

@@ -59,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Login Gagal! Percobaan ke-${_failedAttempts}"),
+          content: Text("Login Gagal! Percobaan ke-$_failedAttempts"),
         ),
       );
 
